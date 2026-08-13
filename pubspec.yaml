@@ -1,0 +1,40 @@
+name: liquid_music_player
+description: A liquid-glass music player built with Flutter, Riverpod, Cupertino and audioplayers.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+  liquid_glass_widgets: ^0.29.5
+  # State management
+  flutter_riverpod: ^2.5.1
+
+  # Audio playback / streaming from assets & files
+  audioplayers: ^6.1.0
+
+  # Import music from device storage
+  file_picker: 10.3.8
+
+  # Store imported song paths / preferences
+  shared_preferences: ^2.3.2
+
+  # Copy imported files into app sandbox
+  path_provider: ^2.1.4
+
+  # Runtime permissions (storage/audio on Android 13+)
+  permission_handler: ^11.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/audio/
