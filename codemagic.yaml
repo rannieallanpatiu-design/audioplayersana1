@@ -1,0 +1,55 @@
+workflows:
+
+  android-apk:
+    name: Liquid Music Android APK
+    max_build_duration: 120
+
+    environment:
+      flutter: 3.47.0
+
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+
+      - name: Analyze Flutter project
+        script: |
+          flutter analyze
+
+      - name: Build Android APK
+        script: |
+          flutter build apk --release
+
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
+
+
+  ios-ipa:
+    name: Liquid Music iOS IPA
+    max_build_duration: 120
+
+    environment:
+      flutter: 3.47.0
+      xcode: latest
+      cocoapods: default
+
+    scripts:
+      - name: Get Flutter packages
+        script: |
+          flutter pub get
+
+      - name: Install CocoaPods dependencies
+        script: |
+          find . -name "Podfile" -execdir pod install \;
+
+      - name: Analyze Flutter project
+        script: |
+          flutter analyze
+
+      - name: Build iOS
+        script: |
+          flutter build ipa --release --no-codesign
+
+    artifacts:
+      - build/ios/archive/*.xcarchive
+      - build/ios/ipa/*.ipa
